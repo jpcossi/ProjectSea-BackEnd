@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                                 .requestMatchers(HttpMethod.PUT, "/admin/user/{id}/update").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/admin/user/{id}/delete").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.GET, "/admin/users").hasRole("ADMIN")

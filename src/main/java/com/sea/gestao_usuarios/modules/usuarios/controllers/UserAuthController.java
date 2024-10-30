@@ -25,7 +25,6 @@ import com.sea.gestao_usuarios.dto.UserAuthDto;
 import com.sea.gestao_usuarios.modules.usuarios.User;
 import com.sea.gestao_usuarios.modules.usuarios.UserEmails;
 import com.sea.gestao_usuarios.modules.usuarios.UserEndereco;
-import com.sea.gestao_usuarios.modules.usuarios.UserRole;
 import com.sea.gestao_usuarios.modules.usuarios.UserTelefone;
 import com.sea.gestao_usuarios.modules.usuarios.repository.UserRepository;
 
@@ -50,13 +49,14 @@ public class UserAuthController {
         if(userRepository.findByLogin(registerDto.getLogin()) != null){
             return new ResponseEntity<>("Usuário já existe, tente novamente com outro nome!", HttpStatus.BAD_REQUEST);
         }
+        
         User user = new User();
         UserEndereco endereco = new UserEndereco();
         
         user.setLogin(registerDto.getLogin());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         
-        user.setRole(UserRole.USER);
+        user.setRole(registerDto.getRole());
         user.setName(registerDto.getName());
         user.setCpf(registerDto.getCpf());
 

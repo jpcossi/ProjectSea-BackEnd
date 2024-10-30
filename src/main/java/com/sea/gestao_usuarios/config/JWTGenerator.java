@@ -53,7 +53,7 @@ public class JWTGenerator{
   public String validateToken(String token){
     Algorithm algorithm = Algorithm.HMAC256(secret);
     try {
-      var subject = JWT.require(algorithm)
+      String subject = JWT.require(algorithm)
         .withIssuer("auth-api")
         .build()
         .verify(token)

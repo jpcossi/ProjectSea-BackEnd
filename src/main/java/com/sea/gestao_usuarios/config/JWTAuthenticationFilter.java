@@ -31,7 +31,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter{
         String token = getJWTFromRequest(request);
         System.out.println("TOKEn no filter" + token);
         if(token != null){
-          var login = tokenGenerator.validateToken(token);
+          String login = tokenGenerator.validateToken(token);
           long id = Long.parseLong(login);
           User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não pode ser encontrado!"));
           System.out.println("Login no filter:    " + login);
